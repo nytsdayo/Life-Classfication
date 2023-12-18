@@ -2,9 +2,9 @@ from tensorflow import keras
 from tensorflow.keras.preprocessing.image import array_to_img, img_to_array, load_img, ImageDataGenerator
 import numpy as np
 import os
-model = keras.models.load_model("Models\Roomin_model.h5")
+model = keras.models.load_model("Models\使用するモデル名")
 datagen = ImageDataGenerator(rescale=1./255)
-directory='Data/20231212/'
+directory='Data/TodayDate/' #TodayDateば今日の日付をyyyymmddで入力する
 dirlist = os.listdir(directory)
 dirlist=sorted(dirlist)
 list_time=[]
@@ -13,7 +13,6 @@ for filename in dirlist:
 
     filepath = os.path.join(directory,filename)
     print(filepath)
-    #filepath = "../../TechBASE/M4/Predict/20231212/20231212043943.jpg"
     img = load_img(filepath, target_size=(128, 128))  # モデルの入力サイズに合わせる
     img_array = img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)  # バッチの次元を追加
